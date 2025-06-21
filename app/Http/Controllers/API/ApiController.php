@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Task
+use App\Models\Task;
 use Laravel\Sanctum\Sanctum;
 class ApiController extends Controller
 {
@@ -36,10 +36,7 @@ class ApiController extends Controller
     {
         $task_id    =   $request->task_id;
         $task       =   Task::find($task_id)->first();
-
         return response()->json(['status'=>'success','task'=> $task ]);
-
-
     }
     
 }
