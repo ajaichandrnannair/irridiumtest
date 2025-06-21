@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Task
-
+use Laravel\Sanctum\Sanctum;
 class ApiController extends Controller
 {
     //
@@ -15,9 +15,14 @@ class ApiController extends Controller
         $user_credentials= request(['email','password']);
         if( Auth::attempt(  $user_credentials))
         {
-            return response()->json(['message'=>'Invalid login details']);
+            return response()->json(['message'=>'Invalid login details','status'=>'failure']);
         }
-        $user_id = Auth::
+        $user = Auth::user();
+        $token = $user->createToken('api-tioken')->plainTextToken;
+
+        return response()->json(['status'=>'success','task'=> $task ]);
+
+
     }
     public function createTask(Request $request)
     {
