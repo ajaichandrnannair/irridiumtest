@@ -13,5 +13,5 @@ Route::get("login",[ApiController::class,'login'])->nmae("api.login");
 
 Route::middleware('auth:sanctum')->group(function(){
 
-    Route::post("task",[ApiController::class,'getTask']);
+    Route::post("task",[ApiController::class,'getTask'])->name("api.gettask");
 });
