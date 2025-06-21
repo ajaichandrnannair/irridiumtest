@@ -4,12 +4,21 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Res
+
 use App\Models\Task
 
 class ApiController extends Controller
 {
     //
+    public function login(Request $request)
+    {
+        $user_credentials= request(['email','password']);
+        if( Auth::attempt(  $user_credentials))
+        {
+            return response()->json(['message'=>'Invalid login details']);
+        }
+        $user_id = Auth::
+    }
     public function createTask(Request $request)
     {
         $task_validated     =$request->validate([
@@ -23,7 +32,7 @@ class ApiController extends Controller
         $task_id    =   $request->task_id;
         $task       =   Task::find($task_id)->first();
 
-        return $response->json(['status'=>'success','task'=> $task ]);
+        return response()->json(['status'=>'success','task'=> $task ]);
 
 
     }
