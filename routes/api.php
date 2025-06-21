@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get("login",[ApiController::class,'login'])->nmae("api.login");
+Route::post("login",[ApiController::class,'login'])->nmae("api.login");
 
 Route::middleware('auth:sanctum')->group(function(){
 
